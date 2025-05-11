@@ -1,12 +1,12 @@
 #include <iostream>
 #include "animal.h"
+#include "map.h"
 
 int main()
 {
     animal todd;
-    while (true)
-    {
-        std::cout << rand() % 10; // Fuck you!
-    }
+    map test(4, 10);
+    test.insert(todd, 12);
+
     return 0;
 }
