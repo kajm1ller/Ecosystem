@@ -1,10 +1,14 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
-#include "animal.h"
 
 #ifndef MAP_H
 #define MAP_H
+
+const char GROUND = '.';
+
+class animal;
 
 class map
 {
@@ -14,33 +18,37 @@ public:
         rows = r;
         columns = c;
         grid.resize(r * c);
-        for (int i = 0; i < grid.size(); ++i)
+        for (size_t i = 0; i < grid.size(); ++i) // Use size_t for vector indices
         {
-            grid.at(i) = 'g';
+            grid.at(i) = GROUND;
         }
     };
 
-    void printMap() // for testing purposes.
+    void printMap()
     {
         int i = 0;
         for (int j = 0; j < rows; ++j)
         {
             for (int z = 0; z < columns; ++z)
             {
-                std::cout << grid.at(i) << " ";
+
+                if (i < grid.size())
+                {
+                    std::cout << grid.at(i) << " ";
+                }
                 ++i;
             }
             std::cout << std::endl;
         }
     };
 
-    void insert(animal bastard, int location);
+    void insert(animal &bastard, int location);
 
     int rows;
     int columns;
+    std::vector<char> grid;
 
 private:
-    std::vector<char> grid;
 };
 
 #endif // MAP_H
