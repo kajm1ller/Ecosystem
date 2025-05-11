@@ -3,7 +3,7 @@
 
 int main()
 {
-    animal todd();
+    animal todd;
 
     return 0;
 }
