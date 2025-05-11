@@ -15,11 +15,10 @@ int main()
     while (true)
     {
 
-        std::cout << "Enter a direction: 1, 2, 3, 4 " << std::endl;
-        std::cin >> direction;
-        todd.move(direction, test);
-        system("CLS");
+        todd.move(rand() % 5, test);
         test.printMap();
+        Sleep(1000);
+        system("CLS");
     }
 
     return 0;
