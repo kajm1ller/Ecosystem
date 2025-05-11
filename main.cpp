@@ -1,8 +1,9 @@
 #include <iostream>
-#include <string>
+#include "animal.h"
 
 int main()
 {
+    animal todd();
 
     return 0;
 }
