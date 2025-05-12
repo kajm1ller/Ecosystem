@@ -10,6 +10,8 @@ const char GROUND = '.';
 
 class animal;
 
+class food;
+
 class map
 {
 public:
@@ -44,8 +46,9 @@ public:
 
     void insert(animal &bastard, int location);
 
-    int rows;
+    void insert(food tasty, int location);
     int columns;
+    int rows;
     std::vector<char> grid;
 
 private:

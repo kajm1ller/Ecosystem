@@ -1,6 +1,7 @@
 #include <iostream>
 #include "animal.h"
 #include "map.h"
+#include "food.h"
 #include <Windows.h>
 #include <cstdlib>
 #include <ctime>
@@ -1011,20 +1012,24 @@ std::string names[1000]{
 int main()
 {
     srand(time(NULL));
-    animal todd(names[rand() % 1000]);
-    animal richard(names[rand() % 1000]);
+    animal penis[10];
     map test(40, 100);
-    test.insert(todd, 12);
-    test.insert(richard, 45);
+    food mango;
+    for (int i = 0; i < 10; ++i)
+    {
+        test.insert(penis[i], rand() % 3000);
+    }
+    test.insert(mango, rand() % 3000);
     test.printMap();
     int direction = 0;
     while (true)
     {
-        richard.move(rand() % 5, test);
-        todd.move(rand() % 5, test);
+        for (int i = 0; i < 10; ++i)
+        {
+            penis[i].move(rand() % 8, test);
+        }
         test.printMap();
-        richard.print();
-        todd.print();
+
         Sleep(1000);
         system("CLS");
     }

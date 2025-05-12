@@ -20,11 +20,15 @@ void animal::move(int direction, map &poop) // hoo wee what a fucked up function
 
     int newMapLocation = mapLocation;
 
+    // Calculate current row and column
+    int currentRow = mapLocation / num_cols;
+    int currentCol = mapLocation % num_cols;
+
     switch (direction)
     {
     case 1: // RIGHT
         newMapLocation = mapLocation + 1;
-        if ((mapLocation % num_cols < num_cols - 1) && (newMapLocation < current_grid_size))
+        if ((currentCol < num_cols - 1) && (newMapLocation < current_grid_size))
         {
             poop.grid.at(newMapLocation) = this->icon;
             poop.grid.at(mapLocation) = '.';
@@ -34,7 +38,7 @@ void animal::move(int direction, map &poop) // hoo wee what a fucked up function
         break;
     case 2: // LEFT
         newMapLocation = mapLocation - 1;
-        if ((mapLocation % num_cols > 0) && (newMapLocation >= 0))
+        if ((currentCol > 0) && (newMapLocation >= 0))
         {
             poop.grid.at(newMapLocation) = this->icon;
             poop.grid.at(mapLocation) = '.';
@@ -44,7 +48,7 @@ void animal::move(int direction, map &poop) // hoo wee what a fucked up function
         break;
     case 3: // UP
         newMapLocation = mapLocation - num_cols;
-        if ((mapLocation / num_cols > 0) && (newMapLocation >= 0))
+        if ((currentRow > 0) && (newMapLocation >= 0))
         {
             poop.grid.at(newMapLocation) = this->icon;
             poop.grid.at(mapLocation) = '.';
@@ -54,7 +58,47 @@ void animal::move(int direction, map &poop) // hoo wee what a fucked up function
         break;
     case 4: // DOWN
         newMapLocation = mapLocation + num_cols;
-        if ((mapLocation / num_cols < num_rows - 1) && (newMapLocation < current_grid_size))
+        if ((currentRow < num_rows - 1) && (newMapLocation < current_grid_size))
+        {
+            poop.grid.at(newMapLocation) = this->icon;
+            poop.grid.at(mapLocation) = '.';
+            mapLocation = newMapLocation;
+            energy--;
+        }
+        break;
+    case 5: // NORTHWEST
+        newMapLocation = mapLocation - num_cols - 1;
+        if ((currentRow > 0) && (currentCol > 0) && (newMapLocation >= 0))
+        {
+            poop.grid.at(newMapLocation) = this->icon;
+            poop.grid.at(mapLocation) = '.';
+            mapLocation = newMapLocation;
+            energy--;
+        }
+        break;
+    case 6: // NORTHEAST
+        newMapLocation = mapLocation - num_cols + 1;
+        if ((currentRow > 0) && (currentCol < num_cols - 1) && (newMapLocation >= 0) && (newMapLocation < current_grid_size)) // Added check for newMapLocation < current_grid_size
+        {
+            poop.grid.at(newMapLocation) = this->icon;
+            poop.grid.at(mapLocation) = '.';
+            mapLocation = newMapLocation;
+            energy--;
+        }
+        break;
+    case 7: // SOUTHWEST
+        newMapLocation = mapLocation + num_cols - 1;
+        if ((currentRow < num_rows - 1) && (currentCol > 0) && (newMapLocation < current_grid_size) && (newMapLocation >= 0)) // Added check for newMapLocation >=0
+        {
+            poop.grid.at(newMapLocation) = this->icon;
+            poop.grid.at(mapLocation) = '.';
+            mapLocation = newMapLocation;
+            energy--;
+        }
+        break;
+    case 8: // SOUTHEAST
+        newMapLocation = mapLocation + num_cols + 1;
+        if ((currentRow < num_rows - 1) && (currentCol < num_cols - 1) && (newMapLocation < current_grid_size))
         {
             poop.grid.at(newMapLocation) = this->icon;
             poop.grid.at(mapLocation) = '.';
